@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
-from src.ECFSystem.Extenuating.views import *
+from src.ECFSystemBackend.Extenuating.views import *
 
 urlpatterns: list = [
     path('admin/', admin.site.urls),

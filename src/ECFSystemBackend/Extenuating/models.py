@@ -31,6 +31,9 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractUser):
     """Our provided user class with all necessary info and inheritance from django abstract user"""
+    class Meta:
+        app_label = 'Extenuating'
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(verbose_name="email", max_length=120, unique=True)
     full_name = models.CharField(verbose_name="full_name", max_length=240)

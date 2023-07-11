@@ -56,7 +56,7 @@ jobs:
         python ./src/manage.py test
       env:
         SECRET_KEY: 'foobar'
-        FRONT_END_LOCATION: 'ECFSystem/templates/app/build'
+        FRONT_END_LOCATION: 'ECFSystemCode/templates/app/build'
         DB_NAME: 'postgres'
         DB_USER: 'postgres'
         DB_PASSWORD: 'postgres'

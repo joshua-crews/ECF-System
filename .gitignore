@@ -162,4 +162,4 @@ src/Extenuating/templates/app/build/
 *.dot
 
 # Migrations are irrelavent for now
-/src/ECFSystem/Extenuating/migrations
+/src/ECFSystemCode/Extenuating/migrations
