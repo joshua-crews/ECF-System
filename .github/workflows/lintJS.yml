@@ -25,4 +25,4 @@ jobs:
                   npm install eslint
                   npm install prettier
             - name: Lint
-              run: npx eslint ./src
+              run: npx eslint ./src --no-error-on-unmatched-pattern
