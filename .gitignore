@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+#Environemtn Configs
+.env
+
 # Node modules
 node_modules
 dist
@@ -15,6 +18,9 @@ dist-ssr
 
 # Python modules
 venv
+
+# Django user migrations for local db
+migrations
 
 # Editor directories and files
 .vscode/*
