@@ -24,9 +24,6 @@ class NewRefreshToken(APIView):
             refresh['user_id'] = str(user.id)
             refresh['email'] = user.email
             refresh['full_name'] = user.full_name
-            refresh['is_admin'] = user.is_admin
-            refresh['is_business'] = user.is_business
-            refresh['phone_number'] = str(user.phone_number)
             refresh['date_joined'] = str(user.date_joined)[:19]
             data = {
                 'access': str(refresh.access_token),
@@ -46,9 +43,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['user_id'] = str(user.id)
         token['email'] = user.email
         token['full_name'] = user.full_name
-        token['is_admin'] = user.is_admin
-        token['is_business'] = user.is_business
-        token['phone_number'] = str(user.phone_number)
         token['date_joined'] = str(user.date_joined)[:19]
         return token
 
