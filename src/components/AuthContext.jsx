@@ -86,6 +86,34 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    let createUser = async (e) => {
+        e.preventDefault()
+        if (!e.target.username.value) {
+            alert("Please enter a username.")
+        } else if (!e.target.email.value) {
+            alert("Don't forget to enter your email.")
+        } else if (!e.target.password.value) {
+            alert("Don't forget to enter your password.")
+        } else {
+            let response = await fetch('http://127.0.0.1:8000/api/register/', {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({'username':e.target.username.value, 'email':e.target.email.value, 'password':e.target.password.value})
+            })
+            await response.json()
+            if (response.status === 200 || response.status === 201) {
+                navigator(0)
+                alert('Account created!')
+            } else if (response.status === 401) {
+                alert('Invalid username, email, or password.')
+            } else {
+                alert('Auth service failed! Is it maybe down?')
+            }
+        }
+    }
+
     let handleResponse = async (response) => {
         let data = await response.json()
         if (response.status === 200) {
@@ -110,6 +138,7 @@ export const AuthProvider = ({children}) => {
         authTokens:authTokens,
         loginUser:loginUser,
         logoutUser:logoutUser,
+        createUser:createUser,
         updateNewToken:updateNewToken
     }
 

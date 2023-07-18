@@ -4,6 +4,7 @@ import Layout from "./components/Layout.jsx";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import PrivateRouteProfile from "./components/common/PrivateRouteProfile.jsx";
+import PrivateRouteLogin from "./components/common/PrivateRouteLogin.jsx";
 
 import Login from "./components/login/Login.jsx";
 import Signup from "./components/login/Signup.jsx";
@@ -21,7 +22,12 @@ function App() {
                         </AuthProvider>
                     }>
                         <Route index element={<Login />} />
-                        <Route path="signup" element={<Signup />} />
+                        <Route path="signup" element={
+                            <PrivateRouteLogin>
+                                <Signup />
+                            </PrivateRouteLogin>
+                        }
+                        />
                         {'// Redirects to other pages if they try to access non-existent pages'}
                         <Route path="*" element={<Navigate to='/' replace />} />
                         <Route path="home" element={

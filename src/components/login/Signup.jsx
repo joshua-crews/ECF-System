@@ -6,14 +6,14 @@ import { useContext } from 'react';
 import { AuthContext } from '../AuthContext';
 
 function Signup() {
-    const { loginUser } = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
 
     return(
         <div className="container">
             <div className="signup-background">
                 <div className="login-center">
                     <img src={logo} className="university-logo" alt="university logo"/>
-                    <form onSubmit={loginUser} className="login-form">
+                    <form onSubmit={createUser} className="login-form">
                         <input type="text" name="username" placeholder="Username" className="input-login-form"/>
                         <input type="text" name="email" placeholder="Email" className="input-login-form"/>
                         <input type="password" name="password" placeholder="Password" className="input-login-form"/>
