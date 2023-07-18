@@ -1,0 +1,15 @@
+.signup-background {
+    background-color: #1a1a1a;
+    border-radius: 30px;
+    height: 750px;
+    width: 750px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (prefers-color-scheme: light) {
+    .signup-background {
+        color: #213547;
+        background-color: #f9f9f9;
+    }
+}
