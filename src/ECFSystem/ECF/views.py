@@ -8,6 +8,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from .serializers import *
+
 
 class NewRefreshToken(APIView):
     """Returns a new JWT token if necessary for client actions when given a valid JWT."""
@@ -22,9 +24,8 @@ class NewRefreshToken(APIView):
             user = User.objects.get(id__exact=decode_jwt(request))
             refresh = RefreshToken.for_user(user)
             refresh['user_id'] = str(user.id)
+            refresh['username'] = user.username
             refresh['email'] = user.email
-            refresh['full_name'] = user.full_name
-            refresh['date_joined'] = str(user.date_joined)[:19]
             data = {
                 'access': str(refresh.access_token),
                 'refresh': str(refresh),
@@ -41,12 +42,27 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token['user_id'] = str(user.id)
+        token['username'] = str(user.username)
         token['email'] = user.email
-        token['full_name'] = user.full_name
-        token['date_joined'] = str(user.date_joined)[:19]
         return token
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
     """Override for the default token pair types."""
     serializer_class = MyTokenObtainPairSerializer
+
+
+class RegistrationView(APIView):
+    """The registration endpoint for creating a new user"""
+
+    @classmethod
+    def post(cls, request) -> Response:
+        """Creates a new user object and returns a status if successful as well as calls to activate email.
+        :param request: The Http request header for the post
+        :return: A response JSON type
+        """
+        serializer = RegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
