@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'django_extensions',
     'rest_framework_swagger',
-    'Extenuating',
+    'ECF',
 ]
 
 REST_FRAMEWORK = {
@@ -140,7 +140,7 @@ TIME_ZONE = 'UTC'
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'Extenuating.User'
+AUTH_USER_MODEL = 'ECF.user'
 
 USE_I18N = True
 

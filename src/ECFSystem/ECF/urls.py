@@ -1,6 +1,7 @@
 from django.urls import path
 from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
+from django.conf import settings
 
 from rest_framework_simplejwt.views import TokenRefreshView
 

@@ -18,7 +18,7 @@ function Signup() {
                         <input type="text" name="email" placeholder="Email" className="input-login-form"/>
                         <input type="password" name="password" placeholder="Password" className="input-login-form"/>
                         <button name="Submit" type="submit" className="submit-login-form">
-                            Sign In
+                            Create Account
                         </button>
                     </form>
                     <p>Already have an account? <a href="/">Login here</a></p>
