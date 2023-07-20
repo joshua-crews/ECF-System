@@ -1,0 +1,6 @@
+.form-content {
+    min-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,29 @@
+.profile-page {
+    display: flex;
+    min-width: 720px;
+}
+
+.user-content {
+    background-color: #22252e;
+    width: 100%;
+}
+
+.profile-content {
+    min-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-forms {
+    font-size: 24px;
+    width: 450px;
+    text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+    .user-content {
+        background-color: #f9f9f9;
+        color: black;
+    }
+}

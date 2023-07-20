@@ -5,7 +5,7 @@ import {AuthContext} from "../AuthContext.jsx";
 
 function PrivateRouteLogin({ children }) {
     let {user} = useContext(AuthContext)
-    return !user ? <>{children}</> : <Navigate to="/profile" />;
+    return !user ? <>{children}</> : <Navigate to="/home" />;
 }
 
 PrivateRouteLogin.propTypes = {

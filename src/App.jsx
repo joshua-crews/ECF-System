@@ -9,6 +9,7 @@ import PrivateRouteLogin from "./components/common/PrivateRouteLogin.jsx";
 import Login from "./components/login/Login.jsx";
 import Signup from "./components/login/Signup.jsx";
 import Profile from "./components/Profile/Profile.jsx";
+import Form from "./components/Form/Form.jsx";
 
 function App() {
     return (
@@ -21,7 +22,11 @@ function App() {
                             <Layout />
                         </AuthProvider>
                     }>
-                        <Route index element={<Login />} />
+                        <Route index element={
+                            <PrivateRouteLogin>
+                                <Login />
+                            </PrivateRouteLogin>
+                        } />
                         <Route path="signup" element={
                             <PrivateRouteLogin>
                                 <Signup />
@@ -33,6 +38,12 @@ function App() {
                         <Route path="home" element={
                             <PrivateRouteProfile>
                                 <Profile />
+                            </PrivateRouteProfile>
+                        }
+                        />
+                        <Route path="form" element={
+                            <PrivateRouteProfile>
+                                <Form />
                             </PrivateRouteProfile>
                         }
                         />

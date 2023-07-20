@@ -29,20 +29,20 @@ export const AuthProvider = ({children}) => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({'username': e.target.username.value, 'password': e.target.password.value})
-                })
-                let data = await response.json()
+                });
                 if (response.status === 200) {
-                    setAuthTokens(data)
-                    setUser(jwtDecode(data.access))
-                    localStorage.setItem('authTokens', JSON.stringify(data))
-                    navigator('../home')
+                    let data = await response.json();
+                    setAuthTokens(data);
+                    setUser(jwtDecode(data.access));
+                    localStorage.setItem('authTokens', JSON.stringify(data));
+                    navigator('../home');
                 } else if (response.status === 401) {
-                    alert('Invalid username/email or password.')
+                    alert('Invalid username/email or password.');
                 } else {
-                    alert('Auth service failed! Is it maybe down?')
+                    alert('Auth service failed! Is it maybe down?');
                 }
-            } catch (e) {
-                alert('Auth service failed! Is it maybe down?')
+            } catch (error) {
+                alert('Auth service failed! Is it maybe down?');
             }
         }
     }
@@ -55,20 +55,25 @@ export const AuthProvider = ({children}) => {
     }
 
     let updateToken = async () => {
-        try {
-            let response = await fetch(`${backendURL}/token/refresh/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({'refresh': authTokens?.refresh})
-            })
-            await handleResponse(response);
-        } catch (e) {
+        if (localStorage.getItem('authTokens') != null) {
+            try {
+                let response = await fetch(`${backendURL}/token/refresh/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({'refresh': authTokens?.refresh})
+                })
+                await handleResponse(response);
+            } catch (e) {
+                setAuthTokens(null);
+                localStorage.removeItem('authTokens');
+                setLoading(false);
+                console.log("Auth service failed, is it maybe down?");
+            }
+        } else {
             setAuthTokens(null);
-            localStorage.removeItem('authTokens');
             setLoading(false);
-            console.log("Auth service failed, is it maybe down?");
         }
     }
 

@@ -1,12 +1,18 @@
 import "./Sidebar.css";
+import {useContext} from "react";
+import {AuthContext} from "../AuthContext";
 
 function Sidebar() {
+    let {logoutUser} = useContext(AuthContext)
+
     return(
-        <div className="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
-            <h3 className="sidebar_item">Menu</h3>
-            <a href="#" className="sidebar_item button">Link 1</a>
-            <a href="#" className="sidebar_item button">Link 2</a>
-            <a href="#" className="sidebar_item button">Link 3</a>
+        <div className="container justify-left">
+            <div className="main-sidebar">
+                <h3 className="sidebar_item sidebar_center">ECF System</h3>
+                <a href="/home" className="sidebar_item sidebar_item_button">HOME</a>
+                <a href="/form" className="sidebar_item sidebar_item_button">FILE FORM</a>
+                <a onClick={logoutUser} href={'../'} className="sidebar_item sidebar_item_button">LOG OUT</a>
+            </div>
         </div>
     );
 }

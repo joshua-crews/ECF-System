@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 function PrivateRouteProfile({ children }) {
     let {user} = useContext(AuthContext)
-    return user ? <>{children}</> : <Navigate to="/login" />;
+    return user ? <>{children}</> : <Navigate to="/" />;
 }
 
 PrivateRouteProfile.propTypes = {
