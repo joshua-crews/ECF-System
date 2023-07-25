@@ -1,6 +1,82 @@
 .form-content {
     min-width: 450px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.form-title {
+    min-height: 20%;
+}
+
+.extenuating {
+    background-color: #404556;
+    border-radius: 30px;
+    width: 90%;
+    min-height: 500px;
+}
+
+.extenuating-form {
+    margin: 10px;
+}
+
+.extenuating-form-button-box {
+    overflow: auto;
+}
+
+.extenuating-form-flow {
+    float: right;
+}
+
+.submit-efc-text-input {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px auto;
+    width: 80%;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.form-custom-checkmark {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.submit-efc-text-checkbox {
+    margin-left: 10px;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.submit-efc-text-date {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px auto;
+    width: 80%;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    box-sizing: border-box;
 }
