@@ -7,6 +7,12 @@
     margin-left: auto;
 }
 
+.university-logo-small {
+    height: 240px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
 @media (prefers-color-scheme: light) {
     .signup-background {
         color: #213547;

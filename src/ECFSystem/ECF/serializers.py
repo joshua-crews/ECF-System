@@ -7,13 +7,17 @@ class RegistrationSerializer(serializers.ModelSerializer):
     and cannot be used for anything other than new userdata creation."""
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email', 'registration_number', 'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
     def save(self) -> User:
-        user: User = User(username=self.validated_data['username'], email=self.validated_data['email'])
+        user: User = User(
+            username=self.validated_data['username'],
+            email=self.validated_data['email'],
+            registration_number=self.validated_data['registration_number']
+        )
         password = self.validated_data['password']
         user.set_password(password)
         user.save()

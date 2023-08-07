@@ -27,18 +27,50 @@
 
 .extenuating-form-flow {
     float: right;
+    margin-right: 20px;
+}
+
+.extenuating-form-tab {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.extenuating-form-tab label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.extenuating-form-tab label input[target="_bar"] {
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.in-uk-or-visa {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.extenuating-form-tab label span {
+    flex: 0 0 200px;
 }
 
 .submit-efc-text-input {
     color: #333;
     font-size: 1.2rem;
     margin: 10px auto;
-    width: 80%;
-    padding: 1.5rem 2rem;
+}
+
+.submit-efc-generic {
+    width: 50%;
+    float: right;
+    padding: 1rem 1.5rem;
     border-radius: 0.2rem;
     background-color: rgb(255, 255, 255);
     border: none;
-    display: block;
+    display: inline-block;
     border-bottom: 0.3rem solid transparent;
     transition: all 0.3s;
     box-sizing: border-box;
@@ -47,9 +79,7 @@
 .form-custom-checkmark {
     display: block;
     position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    font-size: 22px;
+    margin-bottom: 25px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -58,20 +88,30 @@
 }
 
 .submit-efc-text-checkbox {
-    margin-left: 10px;
-    height: 25px;
-    width: 25px;
+    min-height: 25px;
+    min-width: 25px;
     background-color: #eee;
     cursor: pointer;
     pointer-events: all;
+}
+
+.date-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper {
+    position: relative;
+    flex: 1;
+    margin-right: 40px;
 }
 
 .submit-efc-text-date {
     color: #333;
     font-size: 1.2rem;
     margin: 10px auto;
-    width: 80%;
-    padding: 1.5rem 2rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
     border-radius: 0.2rem;
     background-color: rgb(255, 255, 255);
     border: none;
@@ -80,3 +120,36 @@
     transition: all 0.3s;
     box-sizing: border-box;
 }
+
+.submit-efc-text-date::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.calendar-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 1.5rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaa;
+}
+
+.submit-efc-text-date:focus {
+    border-color: #4CAF50;
+}
+
+.submit-efc-select-input {
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+@media (prefers-color-scheme: light) {
+    .extenuating {
+        background-color: #bebebe;
+    }
+}
+

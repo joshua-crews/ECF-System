@@ -97,6 +97,8 @@ export const AuthProvider = ({children}) => {
             alert("Please enter a username.")
         } else if (!e.target.email.value) {
             alert("Don't forget to enter your email.")
+        } else if (!e.target.registration_number.value) {
+            alert("Don't forget to enter your registration number.")
         } else if (!e.target.password.value) {
             alert("Don't forget to enter your password.")
         } else {
@@ -105,7 +107,12 @@ export const AuthProvider = ({children}) => {
                 headers:{
                     'Content-Type':'application/json'
                 },
-                body:JSON.stringify({'username':e.target.username.value, 'email':e.target.email.value, 'password':e.target.password.value})
+                body:JSON.stringify({
+                    'username':e.target.username.value,
+                    'email':e.target.email.value,
+                    'registration_number':e.target.registration_number.value,
+                    'password':e.target.password.value
+                })
             })
             await response.json()
             if (response.status === 200 || response.status === 201) {

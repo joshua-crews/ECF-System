@@ -37,6 +37,9 @@ class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(verbose_name="username", max_length=240, unique=True)
     email = models.EmailField(verbose_name="email", max_length=120, unique=True)
+    registration_number = models.IntegerField(verbose_name="registration number", unique=True)
+    lawful_citizen = models.BooleanField(verbose_name="lawful citizen", default=True)
+    date_of_birth = models.DateTimeField(verbose_name="date of birth", blank=True, null=True)
 
     # The following fields are required for every custom User model
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
@@ -60,3 +63,22 @@ class User(AbstractUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+class ExtenuatingForm(models.Model):
+    """A form created by a user and handles referencing stages of review."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    student = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
+    keep_medical_private = models.BooleanField(verbose_name="keep medical private", default=True)
+    registered_UHS = models.BooleanField(verbose_name="serious illness")
+    healthcare_professional = models.CharField(verbose_name="healthcare professional", default="N/A")
+    date_seen = models.DateTimeField(verbose_name="date seen")
+
+    serious_illness = models.BooleanField(verbose_name="serious illness", default=False)
+    deterioration = models.BooleanField(verbose_name="deterioration", default=False)
+    bereavement = models.BooleanField(verbose_name="bereavement", default=False)
+    family_circumstance = models.BooleanField(verbose_name="family circumstance", default=False)
+    other_factors = models.BooleanField(verbose_name="other factors", default=False)
+    frequent_absence = models.BooleanField(verbose_name="frequent absence", default=False)
+
+    details = models.TextField(verbose_name="details")
