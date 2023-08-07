@@ -71,7 +71,6 @@ function Profile() {
         let x, y, i, valid = true;
         x = document.getElementsByClassName("extenuating-form-tab");
         y = x[currentTab].getElementsByTagName("input");
-        /*
         for (i = 0; i < y.length; i++) {
             if (y[i].value === "") {
                 y[i].className += " invalid";
@@ -89,7 +88,6 @@ function Profile() {
                 }
             }
         }
-        */
         return valid;
     }
 
