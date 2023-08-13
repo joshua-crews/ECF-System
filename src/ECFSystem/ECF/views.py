@@ -9,6 +9,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import *
+from drf_yasg.utils import swagger_auto_schema
 
 
 class NewRefreshToken(APIView):
@@ -24,8 +25,13 @@ class NewRefreshToken(APIView):
             user = User.objects.get(id__exact=decode_jwt(request))
             refresh = RefreshToken.for_user(user)
             refresh['user_id'] = str(user.id)
+            refresh['registration_number'] = str(user.registration_number)
             refresh['username'] = user.username
             refresh['email'] = user.email
+            refresh['first_name'] = user.first_name
+            refresh['last_name'] = user.last_name
+            refresh['date_of_birth'] = str(user.date_of_birth)
+            refresh['is_staff'] = user.is_staff
             data = {
                 'access': str(refresh.access_token),
                 'refresh': str(refresh),
@@ -42,8 +48,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token['user_id'] = str(user.id)
+        token['registration_number'] = str(user.registration_number)
         token['username'] = str(user.username)
-        token['email'] = user.email
+        token['email'] = str(user.email)
+        token['first_name'] = str(user.first_name)
+        token['last_name'] = str(user.last_name)
+        token['date_of_birth'] = str(user.date_of_birth)
+        token['is_staff'] = user.is_staff
         return token
 
 
@@ -64,5 +75,47 @@ class RegistrationView(APIView):
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class NewFormView(APIView):
+    """View for establishing a new form in the database along with validation."""
+
+    @swagger_auto_schema(
+        request_body=FormSerializer,
+        responses={status.HTTP_200_OK: 'Form details'},
+        operation_description="Create new extenuating form"
+    )
+    def post(self, request, *args, **kwargs) -> Response:
+        """Creates a new user object and returns a status if successful as well as calls to activate email.
+        :param request: The Http request header for the post
+        :return: A response JSON type
+        """
+        data = request.data
+        if not is_valid_uuid(data['jwt_token'], True):
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        data['student'] = decode_jwt(data['jwt_token'], True)
+        data.pop('jwt_token')
+        data['date_seen_start'] = data['date_seen'][0]
+        data['date_seen_end'] = data['date_seen'][1]
+        data.pop('date_seen')
+
+        user = User.objects.get(id=data['student'])
+        if user is not None:
+            try:
+                user.registration_number = data['registration_number']
+                user.first_name = data['first_name']
+                user.last_name = data['last_name']
+                user.date_of_birth = data['date_of_birth']
+            except KeyError:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = FormSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            user.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

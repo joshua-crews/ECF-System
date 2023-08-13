@@ -12,6 +12,7 @@ url_patterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/new/', NewRefreshToken.as_view()),
     path('register/', RegistrationView.as_view()),
+    path('form/new/', NewFormView.as_view()),
 ]
 
 if settings.DEBUG:

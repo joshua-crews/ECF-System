@@ -1,5 +1,5 @@
 .form-content {
-    min-width: 450px;
+    min-width: 691px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,6 +22,9 @@
 }
 
 .extenuating-form-button-box {
+    position: absolute;
+    right: 4.5%;
+    bottom: 90px;
     overflow: auto;
 }
 
@@ -107,6 +110,7 @@
 }
 
 .submit-efc-text-date {
+    all: revert;
     color: #333;
     font-size: 1.2rem;
     margin: 10px auto;
@@ -127,8 +131,8 @@
 
 .calendar-icon {
     position: absolute;
-    top: 50%;
-    right: 10px;
+    top: 45%;
+    right: 23px;
     font-size: 1.5rem;
     transform: translateY(-50%);
     pointer-events: none;
@@ -145,6 +149,37 @@
     margin-right: 20px;
     color: #333;
     font-size: 1.2rem;
+}
+
+.form-details-input {
+    width: 100%;
+    height: 300px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px auto;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    resize: none;
+}
+
+.healthcare-professional {
+    background-color: #56585f;
+}
+
+.react-date-picker__wrapper:nth-child(n) {
+    border: none;
+}
+
+.react-daterange-picker__wrapper:nth-child(n) {
+    border: none;
+}
+
+.react-calendar:nth-child(n) {
+    background: #bebeca;
 }
 
 @media (prefers-color-scheme: light) {
