@@ -19,11 +19,11 @@ function Profile() {
     const inputRefs = useRef([]);
     let [currentTab, setCurrentTab] = useState(0);
 
-    const initialized = useRef(false)
+    const initialized = useRef(false);
     const backendURL = config.backendURL;
-    const navigator = useNavigate()
+    const navigator = useNavigate();
 
-    const {updateNewToken} = useContext(AuthContext)
+    const {updateNewToken} = useContext(AuthContext);
 
     const [DOB, changeDOB] = useState(new Date());
     const [dateImpacted, changeDateImpacted] = useState(new Date(), new Date());
@@ -96,7 +96,6 @@ function Profile() {
         x = document.getElementsByClassName("extenuating-form-tab");
         y = x[currentTab].querySelectorAll("input, textarea");
         for (i = 0; i < y.length; i++) {
-            console.log(y[i])
             if (y[i].value === "" && y[i].disabled === false) {
                 y[i].className += " invalid";
                 alert("Please fill in all form parts before proceeding.");
@@ -118,20 +117,40 @@ function Profile() {
 
     let submitForm = async (e) => {
         e.preventDefault();
-        console.log(validateForm())
         if (!validateForm()) {
             console.log("fill in forms please")
             return;
         }
         try {
-            const jwt = JSON.parse(localStorage.getItem('authTokens')).access;
+            const elementsWithKey = inputRefs.current.filter(ref => ref.key !== null);
+            let dataList = []
+            for (let i = 0; i < elementsWithKey.length; i++) {
+                dataList.push([])
+                dataList[i].push(elementsWithKey[i].querySelector('#affectedModuleCode').value);
+                const assignmentType = elementsWithKey[i].querySelector('#assignmentType');
+                dataList[i].push(assignmentType.options[assignmentType.selectedIndex].textContent);
+                dataList[i].push(dateImpacted[0].toISOString());
+                dataList[i].push(dateImpacted[1].toISOString());
+                const actionRequested = elementsWithKey[i].querySelector('#actionRequested');
+                dataList[i].push(actionRequested.options[actionRequested.selectedIndex].textContent);
+            }
+            let modulesList = []
+            for (let i = 0; i < dataList.length; i++) {
+                modulesList.push(JSON.stringify({
+                    'module_code': dataList[i][0],
+                    'assignment_type': dataList[i][1],
+                    'date_impacted_start': dataList[i][2],
+                    'date_impacted_end': dataList[i][3],
+                    'action_requested': dataList[i][4],
+                }))
+            }
             let response = await fetch(`${backendURL}/form/new/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    'jwt_token': jwt,
+                    'jwt_token': JSON.parse(localStorage.getItem('authTokens')).access,
                     'registration_number': e.target.registrationNumberInput.value,
                     'uk_citizen': e.target.ukCitizenCheck.checked,
                     'first_name': e.target.firstNameField.value,
@@ -147,7 +166,8 @@ function Profile() {
                     'family_circumstances': e.target.familyCircumstances.checked,
                     'other_factors': e.target.otherFactors.checked,
                     'frequent_absence': e.target.frequentAbsence.checked,
-                    'details': e.target.detailsInput.value
+                    'details': e.target.detailsInput.value,
+                    'modules': modulesList
                 })
             });
             if (response.status === 200 || response.status === 201) {
@@ -243,7 +263,7 @@ function Profile() {
                             {divData.map((data, index) => (
                                 <>
                                     {<div key={index}
-                                        className="extenuating-form-tab"
+                                        className="extenuating-form-tab" name="extenuatingModule"
                                         style={{
                                             display: 'none',
                                         }}
@@ -251,11 +271,13 @@ function Profile() {
                                     }>
                                         <label>
                                             Affected Module Code:
-                                            <input className="last-name submit-efc-text-input submit-efc-generic" target="_bar" />
+                                            <input className="last-name submit-efc-text-input submit-efc-generic"
+                                                   id="affectedModuleCode" name="affectedModuleCode" target="_bar"/>
                                         </label>
                                         <label>
                                             Assignment Type:
-                                            <select className="ecf-assignment-type submit-efc-select-input submit-efc-generic">
+                                            <select className="ecf-assignment-type submit-efc-select-input submit-efc-generic"
+                                                    id="assignmentType" name="assignmentType">
                                                 <option value="option1">Assignment</option>
                                                 <option value="option2">Exam</option>
                                                 <option value="option3">Quiz</option>
@@ -269,13 +291,15 @@ function Profile() {
                                             Date When Impacted:
                                             <div className="date-input-wrapper">
                                                 <DateRangePicker className="submit-efc-text-date" target="_bar"
+                                                            id="datesModuleAffected" name="datesModuleAffected"
                                                             onChange={handleDateImpactedChange} value={dateImpacted} />
                                                 <span className="calendar-icon">&#x1F4C5;</span>
                                             </div>
                                         </label>
                                         <label>
                                             Action Requested:
-                                            <select className="ecf-action-requested submit-efc-select-input submit-efc-generic">
+                                            <select className="ecf-action-requested submit-efc-select-input submit-efc-generic"
+                                                    id="actionRequested" name="actionRequested">
                                                 <option value="option1">Not Assessed</option>
                                                 <option value="option1">No penalty for late submission</option>
                                                 <option value="option1">Deadline Extension</option>

@@ -21,6 +21,100 @@
     text-align: center;
 }
 
+.extenuating-forms {
+    width: 95%;
+    margin: 10px;
+    border-collapse: collapse;
+}
+
+.extenuating-forms-header td {
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+    text-align: center;
+}
+
+.extenuating-forms-header td:nth-last-child(-n+1) {
+    border-right: none;
+}
+
+.extenuating-forms-body tr:hover {
+    background: #535bf2;
+    cursor: pointer;
+}
+
+.extenuating-forms-body td:nth-child(3) {
+    min-width: 250px;
+    width: 300px;
+    max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.extenuating-forms-body td:nth-child(4) {
+    min-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-home-forms {
+    max-height: 500px;
+    overflow: auto;
+    min-width: 700px;
+}
+
+.profile-home-forms::-webkit-scrollbar {
+    display: none;
+}
+
+.progress-container {
+    position: relative;
+    width: 200px;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 15px;
+    width: 0;
+    overflow: hidden;
+}
+
+.sliding-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-image: linear-gradient(135deg, transparent 33%, rgba(255, 255, 255, 0.5) 33%, rgba(255, 255, 255, 0.5) 66%, transparent 66%);
+    background-size: 20px 10px;
+}
+
+.review-stage {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
 @media (prefers-color-scheme: light) {
     .user-content {
         background-color: #f9f9f9;

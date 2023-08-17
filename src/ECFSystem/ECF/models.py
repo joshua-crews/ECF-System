@@ -69,6 +69,8 @@ class ExtenuatingForm(models.Model):
     """A form created by a user and handles referencing stages of review."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     student = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
+    review_progress = models.IntegerField(null=False, default=10)
+    review_stage = models.CharField(verbose_name="review progress", default="Submitted", null=False, blank=False)
     keep_medical_private = models.BooleanField(verbose_name="keep medical private", default=True)
     registered_UHS = models.BooleanField(verbose_name="registered UHS")
     healthcare_professional = models.CharField(verbose_name="healthcare professional", null=True, blank=True)
@@ -83,3 +85,13 @@ class ExtenuatingForm(models.Model):
     frequent_absence = models.BooleanField(verbose_name="frequent absence", default=False)
 
     details = models.TextField(verbose_name="details")
+
+
+class ExtenuatingFormModule(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    extenuating_form = models.ForeignKey(ExtenuatingForm, on_delete=models.CASCADE, to_field='id')
+    module_code = models.CharField(verbose_name="module code", blank=False)
+    assignment_type = models.CharField(verbose_name="assignment type", blank=False)
+    action_requested = models.CharField(verbose_name="action requested", blank=False)
+    date_impacted_start = models.DateTimeField(verbose_name="date impacted start")
+    date_impacted_end = models.DateTimeField(verbose_name="date impacted end")

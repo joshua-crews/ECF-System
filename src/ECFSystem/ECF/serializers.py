@@ -54,3 +54,22 @@ class FormSerializer(serializers.ModelSerializer):
         )
         form.save()
         return form
+
+
+class ModuleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExtenuatingFormModule
+        fields = ['id', 'extenuating_form', 'module_code', 'assignment_type', 'action_requested', 'date_impacted_start',
+                  'date_impacted_end']
+
+    def save(self) -> ExtenuatingFormModule:
+        module = ExtenuatingFormModule(
+            extenuating_form=self.validated_data['extenuating_form'],
+            module_code=self.validated_data['module_code'],
+            assignment_type=self.validated_data['assignment_type'],
+            action_requested=self.validated_data['action_requested'],
+            date_impacted_start=self.validated_data['date_impacted_start'],
+            date_impacted_end=self.validated_data['date_impacted_end']
+        )
+        module.save()
+        return module

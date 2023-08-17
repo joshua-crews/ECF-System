@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 from .jwt_manager import *
+import json
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -115,7 +116,40 @@ class NewFormView(APIView):
 
         serializer = FormSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
+            if len(data['modules']) <= 0:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            form = serializer.save()
             user.save()
+
+            for module in data['modules']:
+                module_data = json.loads(module)
+                module_data['extenuating_form'] = form.id
+                module_serializer = ModuleSerializer(data=module_data)
+                if module_serializer.is_valid():
+                    module_serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyFormsView(APIView):
+
+    @classmethod
+    def get(cls, request):
+        jwt_token = request.GET.get('jwt')
+        if jwt_token is not None and is_valid_uuid(jwt_token, True):
+            forms = ExtenuatingForm.objects.filter(student__exact=decode_jwt(jwt_token, True)).values(
+                    "id",
+                    "review_progress",
+                    "review_stage",
+                    "details"
+                )
+            for form in forms:
+                modules = ExtenuatingFormModule.objects.filter(extenuating_form__exact=form['id']).values(
+                    "module_code",
+                    "assignment_type"
+                )
+                form['modules'] = modules
+            return Response(list(forms), status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

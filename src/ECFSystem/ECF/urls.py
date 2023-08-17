@@ -1,7 +1,6 @@
 from django.urls import path
 from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
-from django.conf import settings
 
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -13,6 +12,7 @@ url_patterns = [
     path('token/new/', NewRefreshToken.as_view()),
     path('register/', RegistrationView.as_view()),
     path('form/new/', NewFormView.as_view()),
+    path('form/', MyFormsView.as_view()),
 ]
 
 if settings.DEBUG:
