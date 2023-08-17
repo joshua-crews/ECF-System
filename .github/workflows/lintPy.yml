@@ -53,10 +53,11 @@ jobs:
 
     - name: Run Project Tests
       run:
-        python ./src/ECFSystemBackend/manage.py test
+        python ./src/ECFSystem/manage.py test --keepdb
       env:
         SECRET_KEY: 'foobar'
         FRONT_END_LOCATION: 'ECFSystemCode/templates/app/build'
+        TRUSTED_ORIGIN: 'https://foo.bar'
         DB_NAME: 'postgres'
         DB_USER: 'postgres'
         DB_PASSWORD: 'postgres'

@@ -1,0 +1,190 @@
+.form-content {
+    min-width: 691px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-title {
+    min-height: 20%;
+}
+
+.extenuating {
+    background-color: #404556;
+    border-radius: 30px;
+    width: 90%;
+    min-height: 500px;
+}
+
+.extenuating-form {
+    margin: 10px;
+}
+
+.extenuating-form-button-box {
+    position: absolute;
+    right: 4.5%;
+    bottom: 90px;
+    overflow: auto;
+}
+
+.extenuating-form-flow {
+    float: right;
+    margin-right: 20px;
+}
+
+.extenuating-form-tab {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.extenuating-form-tab label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.extenuating-form-tab label input[target="_bar"] {
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.in-uk-or-visa {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.extenuating-form-tab label span {
+    flex: 0 0 200px;
+}
+
+.submit-efc-text-input {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px auto;
+}
+
+.submit-efc-generic {
+    width: 50%;
+    float: right;
+    padding: 1rem 1.5rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: inline-block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.form-custom-checkmark {
+    display: block;
+    position: relative;
+    margin-bottom: 25px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.submit-efc-text-checkbox {
+    min-height: 25px;
+    min-width: 25px;
+    background-color: #eee;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.date-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper {
+    position: relative;
+    flex: 1;
+    margin-right: 40px;
+}
+
+.submit-efc-text-date {
+    all: revert;
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px auto;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.submit-efc-text-date::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.calendar-icon {
+    position: absolute;
+    top: 45%;
+    right: 23px;
+    font-size: 1.5rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaa;
+}
+
+.submit-efc-text-date:focus {
+    border-color: #4CAF50;
+}
+
+.submit-efc-select-input {
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.form-details-input {
+    width: 100%;
+    height: 300px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    color: #333;
+    font-size: 1.2rem;
+    margin: 10px auto;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    resize: none;
+}
+
+.healthcare-professional {
+    background-color: #56585f;
+}
+
+.react-date-picker__wrapper:nth-child(n) {
+    border: none;
+}
+
+.react-daterange-picker__wrapper:nth-child(n) {
+    border: none;
+}
+
+.react-calendar:nth-child(n) {
+    background: #bebeca;
+}
+
+@media (prefers-color-scheme: light) {
+    .extenuating {
+        background-color: #bebebe;
+    }
+}
+

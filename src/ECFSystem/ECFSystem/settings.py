@@ -21,11 +21,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'django_extensions',
     'rest_framework_swagger',
-    'Extenuating',
+    'ECF',
 ]
 
 REST_FRAMEWORK = {
@@ -82,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ECFSystem.urls'
@@ -130,13 +132,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [os.getenv('TRUSTED_ORIGIN')]
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'Extenuating.User'
+AUTH_USER_MODEL = 'ECF.user'
 
 USE_I18N = True
 
