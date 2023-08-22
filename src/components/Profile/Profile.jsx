@@ -3,11 +3,11 @@ import "./Profile.css";
 import Sidebar from "../common/Sidebar.jsx";
 import {useEffect, useRef, useState} from "react";
 import config from "../config.js";
-import {useNavigate} from "react-router-dom";
 
 function Profile() {
 
     const initialized = useRef(false);
+    const backendURL = config.backendURL;
 
     const [loading, setLoading] = useState(false);
     const [forms, setForms] = useState([]);
@@ -23,7 +23,7 @@ function Profile() {
         setLoading(true);
         const jwt = JSON.parse(localStorage.getItem('authTokens')).access;
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/form/?jwt=${jwt}`, {
+            const response = await fetch(`${backendURL}/form/?jwt=${jwt}`, {
                 method: 'GET'
             });
             const data = await response.json();

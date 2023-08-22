@@ -102,7 +102,7 @@ export const AuthProvider = ({children}) => {
         } else if (!e.target.password.value) {
             alert("Don't forget to enter your password.")
         } else {
-            let response = await fetch('http://127.0.0.1:8000/api/register/', {
+            let response = await fetch(`${backendURL}/register/`, {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
