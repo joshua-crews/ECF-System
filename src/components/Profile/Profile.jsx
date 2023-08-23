@@ -3,11 +3,13 @@ import "./Profile.css";
 import Sidebar from "../common/Sidebar.jsx";
 import {useEffect, useRef, useState} from "react";
 import config from "../config.js";
+import {useNavigate} from "react-router-dom";
 
 function Profile() {
 
     const initialized = useRef(false);
     const backendURL = config.backendURL;
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
     const [forms, setForms] = useState([]);
@@ -38,10 +40,6 @@ function Profile() {
         }
     }
 
-    const clickTableRow = (e) => {
-        console.log(e);
-    };
-
     return(
         <>
             <div className="profile-page">
@@ -65,14 +63,14 @@ function Profile() {
                                 </thead>
                                 <tbody className="extenuating-forms-body">
                                 {forms.map(form => (
-                                    <tr key={form.id} onClick={clickTableRow}>
+                                    <tr key={form.id} onClick={() => navigate(`../form-info`, { state: { selectedForm: form } })}>
                                         <td>{form.modules.length > 0 ? form.modules.map(module => module.module_code).join(', ') : ''}</td>
                                         <td>{form.modules.length > 0 ? form.modules.map(module => module.assignment_type).join(', ') : ''}</td>
                                         <td>
                                             <div className="progress-container">
                                                 <div className="progress-bar" style={{
                                                     width: (form.review_progress * 2) + 'px',
-                                                    'background-color': form.review_progress > 50 ? '#dfad28' : '#3498db',
+                                                    'backgroundColor': form.review_progress > 50 ? '#dfad28' : '#3498db',
                                                 }}>
                                                     <div className="sliding-line" style={{
                                                         animation: 'slide ' + (form.review_progress / 10) + 's linear infinite',

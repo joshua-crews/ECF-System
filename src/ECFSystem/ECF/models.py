@@ -69,6 +69,7 @@ class ExtenuatingForm(models.Model):
     """A form created by a user and handles referencing stages of review."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     student = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
+    date_submitted = models.DateTimeField(verbose_name="date submitted", auto_now_add=True)
     review_progress = models.IntegerField(null=False, default=10)
     review_stage = models.CharField(verbose_name="review progress", default="Submitted", null=False, blank=False)
     keep_medical_private = models.BooleanField(verbose_name="keep medical private", default=True)

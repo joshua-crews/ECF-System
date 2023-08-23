@@ -10,6 +10,7 @@ import Login from "./components/login/Login.jsx";
 import Signup from "./components/login/Signup.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import Form from "./components/Form/Form.jsx";
+import FormDetails from "./components/Form/FormDetails.jsx";
 
 function App() {
     return (
@@ -44,6 +45,12 @@ function App() {
                         <Route path="form" element={
                             <PrivateRouteProfile>
                                 <Form />
+                            </PrivateRouteProfile>
+                        }
+                        />
+                        <Route path="form-info" element={
+                            <PrivateRouteProfile>
+                                <FormDetails />
                             </PrivateRouteProfile>
                         }
                         />

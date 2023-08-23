@@ -136,7 +136,7 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(null)
             setUser(null)
             localStorage.removeItem('authTokens')
-            if (!response.status === 400) {
+            if (response.status !== 400) {
                 navigator('../')
             }
         }
