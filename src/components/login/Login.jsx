@@ -2,11 +2,40 @@ import "./Login.css";
 
 import logo from "../../assets/university_logo.svg";
 
-import { useContext } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { AuthContext } from '../AuthContext';
 
 function Login() {
     const { loginUser } = useContext(AuthContext);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (isMobile) {
+        return (
+            <div className="container">
+                <div className="login-background">
+                    <div className="login-center">
+                        <img src={logo} className="university-logo" alt="university logo" />
+                        <p style={{textAlign:"center"}}>
+                            This application is best viewed on a computer browser. Please switch to a computer browser to access all features.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return(
         <div className="container">
