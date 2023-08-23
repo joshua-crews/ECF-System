@@ -1,0 +1,101 @@
+.details-of-form {
+    padding: 5px;
+}
+
+.form-details-review {
+    display: flex;
+}
+
+.form-details-modules h3 {
+    margin-block-start: 0;
+}
+
+.form-details-stage h3 {
+    margin-block-start: 0;
+}
+
+.form-details-progress h3 {
+    margin-block-end: 0;
+}
+
+.review-stage h3 {
+    margin-block-end: 1em;
+}
+
+.form-response-details h3 {
+    margin-block-start: 0;
+    margin-block-end: 0.7em;
+}
+
+.form-details-header {
+    padding: 10px;
+}
+
+.form-details-submitted {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    width: 50%;
+}
+
+.form-details-response {
+    flex: 1;
+    padding: 10px;
+    width: 50%;
+}
+
+.form-details-box {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    height: 200px;
+    color: #1a1a1a;
+    overflow: auto;
+}
+
+.progress-container-large {
+    position: relative;
+    width: 350px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.progress-bar-large {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 15px;
+    width: 0;
+    overflow: hidden;
+}
+
+.sliding-line-large {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-image: linear-gradient(135deg, transparent 33%, rgba(255, 255, 255, 0.5) 33%, rgba(255, 255, 255, 0.5) 66%, transparent 66%);
+    background-size: 60px 30px;
+}
+
+.review-stage-large {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+@keyframes slide-large {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}

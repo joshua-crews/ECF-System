@@ -26,6 +26,7 @@ function Profile() {
     const {updateNewToken} = useContext(AuthContext);
 
     const [DOB, changeDOB] = useState(new Date());
+    let [dateImpactedArray, changeDateImpactedArray] = useState([]);
     const [dateImpacted, changeDateImpacted] = useState(new Date(), new Date());
 
     useEffect(()=> {
@@ -88,6 +89,7 @@ function Profile() {
             document.getElementById("nextBtn").type = "submit";
             currentTab = currentTab - n;
         }
+        setSelectedDateRange();
         showTab(currentTab);
     }
 
@@ -129,8 +131,8 @@ function Profile() {
                 dataList[i].push(elementsWithKey[i].querySelector('#affectedModuleCode').value);
                 const assignmentType = elementsWithKey[i].querySelector('#assignmentType');
                 dataList[i].push(assignmentType.options[assignmentType.selectedIndex].textContent);
-                dataList[i].push(dateImpacted[0].toISOString());
-                dataList[i].push(dateImpacted[1].toISOString());
+                dataList[i].push(dateImpactedArray[i*2].toISOString());
+                dataList[i].push(dateImpactedArray[(i*2)+1].toISOString());
                 const actionRequested = elementsWithKey[i].querySelector('#actionRequested');
                 dataList[i].push(actionRequested.options[actionRequested.selectedIndex].textContent);
             }
@@ -211,8 +213,25 @@ function Profile() {
     };
 
     const handleDateImpactedChange = (date) => {
+        const currentDateIndex = (currentTab - 1) < 0 ? 0 : ((currentTab - 1) * 2);
+        if (dateImpactedArray.length < currentDateIndex + 1) {
+            dateImpactedArray.push(date[0]);
+            dateImpactedArray.push(date[1]);
+        } else {
+            dateImpactedArray[currentDateIndex] = date[0]
+            dateImpactedArray[currentDateIndex+1] = date[1]
+        }
         changeDateImpacted(date);
     };
+
+    let setSelectedDateRange = () => {
+        if (currentTab === 0 || currentTab >= document.getElementsByClassName("extenuating-form-tab").length-3) {
+            return;
+        }
+        const currentDateIndex = (currentTab - 1) < 0 ? 0 : ((currentTab - 1) * 2);
+        dateImpacted[0] = dateImpactedArray[currentDateIndex]
+        dateImpacted[1] = dateImpactedArray[currentDateIndex+1]
+    }
 
     return(
         <>

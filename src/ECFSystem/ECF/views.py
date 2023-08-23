@@ -140,6 +140,7 @@ class MyFormsView(APIView):
         if jwt_token is not None and is_valid_uuid(jwt_token, True):
             forms = ExtenuatingForm.objects.filter(student__exact=decode_jwt(jwt_token, True)).values(
                     "id",
+                    "date_submitted",
                     "review_progress",
                     "review_stage",
                     "details"
