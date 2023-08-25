@@ -21,7 +21,6 @@ function Signup() {
         let x, y, i, valid = true;
         x = document.getElementsByClassName("login-form")[0];
         y = x.querySelectorAll("input, textarea");
-        console.log(y.length)
         for (i = 0; i < y.length; i++) {
             if (y[i].value === "" && y[i].disabled === false) {
                 y[i].className += " invalid";

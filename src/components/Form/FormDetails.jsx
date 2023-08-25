@@ -23,7 +23,6 @@ class FormDetailsRender extends Component {
                     this.props.navigate('../home');
                 }
                 this.setState({ form: selectedForm });
-                console.log(selectedForm)
             } catch (e) {
                 this.props.navigate('../home');
             }
