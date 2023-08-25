@@ -120,7 +120,6 @@ function Profile() {
     let submitForm = async (e) => {
         e.preventDefault();
         if (!validateForm()) {
-            console.log("fill in forms please")
             return;
         }
         try {
