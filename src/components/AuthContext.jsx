@@ -114,12 +114,22 @@ export const AuthProvider = ({children}) => {
                     'password':e.target.password.value
                 })
             })
-            await response.json()
+            const errors = await response.json()
             if (response.status === 200 || response.status === 201) {
                 navigator('/')
                 alert('Account created!')
             } else if (response.status === 401) {
                 alert('Invalid username, email, or password.')
+            } else if (response.status === 400) {
+                for (const field in errors) {
+                    const errorMessages = errors[field];
+
+                    if (errorMessages.length > 0) {
+                        const firstErrorMessage = errorMessages[0];
+                        alert(firstErrorMessage);
+                        break;
+                    }
+                }
             } else {
                 alert('Auth service failed! Is it maybe down?')
             }
