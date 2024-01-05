@@ -1,6 +1,6 @@
 -r requirements.txt
 
 setuptools~=68.1.2
-flake8~=6.1.0
+flake8~=7.0.0
 django-rest-swagger~=2.2.0
 drf_yasg==1.21.7
