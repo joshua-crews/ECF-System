@@ -12,7 +12,7 @@
   "dependencies": {
     "@wojtekmaj/react-daterange-picker": "^5.4.2",
     "fs": "^0.0.1-security",
-    "jwt-decode": "^3.1.2",
+    "jwt-decode": "^4.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-date-picker": "^10.5.0",
