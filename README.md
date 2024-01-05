@@ -6,7 +6,7 @@
 [![LintPy](https://github.com/joshua-crews/ECF-System/actions/workflows/lintPy.yml/badge.svg)](https://github.com/joshua-crews/ECF-System/actions/workflows/lintPy.yml)
 
 # About
-Here is the code for the demo of my MSc dissertation on the ECF System. The project specifications can be found below for the Extenuating Circumstances Form System (ECFSystem). In order to run the project, you will need the necessary node packages as well as a configured python environment from [requirements.txt](requirements.txt).
+Here is the code for the demo of my MSc dissertation on the ECF System. The project specifications can be found below for the Extenuating Circumstances Form System (ECFSystem). In order to run the project, you will need the necessary node packages as well as a configured python environment from [requirements.txt](requirements.txt). The latex code for the report can be found in [report](report).
 
 # Specifications
 The University had a complicated system to deal with extenuating circumstances issues. It was originally based on paper and the current, partially on-line, system is not very usable by either staff or students.
