@@ -18,7 +18,7 @@
     "react-date-picker": "^10.5.0",
     "react-dom": "^18.2.0",
     "react-dropdown-input": "^0.1.11",
-    "react-router-dom": "^6.14.1",
+    "react-router-dom": "^6.21.1",
     "react-tooltip": "^5.18.1",
     "require.js": "^1.0.0"
   },
